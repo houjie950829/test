@@ -1,0 +1,222 @@
+interface:
+  meeting:  # 会议
+    - url: /api/auth_center/v3/login  # 会议登录
+      name: 登录  # 接口注释
+      className: TestLogin_meeting  # 接口类名
+      funName:
+        - test_login_meeting: {  # 接口方法名
+        bar: [{ account : 13438457239 , password : Aa123456 }],  # 接口参数
+        test_data: {},
+        case_name: 正常登录,
+        result: ['0'],  # 预期结果
+        mode: post,  # 请求类型
+        re_bar: data, # 请求参数
+        }
+    - url: /api/schedule/v3/m/meeting_list  # 会议列表
+      name: 会议列表  # 接口注释
+      className: meetinglist_meeting  # 接口类名
+      funName:
+        - test_meetinglist: {  # 接口方法名
+        bar: {},  # 接口参数
+        test_data: {},
+        case_name: 会议列表,
+        result: [0],  # 预期结果
+        mode: post,  # 请求类型
+        re_bar: data, # 请求参数
+        }
+    - url: /api/schedule/v3/m/add_meeting  # 新增会议
+      name: 新增会议  # 接口注释
+      className: addmeeting_meeting  # 接口类名
+      funName:
+      - test_addmeeting: {  # 接口方法名
+        bar: {form_data: "{\"meeting_title\":\"会议主题\",\"meeting_time_day\":1539532800,\"meeting_time_h_i\":\"[\\\"1539594000,1539597600\\\"]\",\"meeting_person\":\"[\\\"100058296\\\"]\",\"minutes_person\":\"\",\"attend_way\":\"[{\\\"value\\\":\\\"1\\\",\\\"option\\\":\\\"现场会议\\\"}]\",\"meeting_room\":\"[{\\\"value\\\":3076,\\\"option\\\":\\\"北京会议室1厅\\\",\\\"address\\\":{\\\"actual_area_id\\\":\\\"\\\",\\\"actual_area_name\\\":\\\"\\\",\\\"province\\\":\\\"110000\\\",\\\"address\\\":\\\"sf\\\",\\\"city\\\":\\\"110100\\\",\\\"area\\\":\\\"110101\\\",\\\"province_name\\\":\\\"北京市\\\",\\\"city_name\\\":\\\"北京市\\\",\\\"area_name\\\":\\\"东城区\\\"}}]\",\"remind\":\"[{\\\"value\\\":4,\\\"option\\\":\\\"提前15分钟\\\"}]\",\"link_files\":\"\",\"meeting_service\":\"[{\\\"value\\\":0,\\\"option\\\":\\\"关闭\\\"}]\",\"service_person\":\"\",\"service_content\":\"\"}"},  # 接口参数
+        test_data: {},
+        case_name: 新增会议,
+        result: [0],  # 预期结果
+        mode: post,  # 请求类型
+        re_bar: data, # 请求参数
+      }
+  skydrive:
+    - url: /api/auth_center/v3/login  # 登录
+      name: 登录  # 接口注释
+      className: TestLogin_skydrive  # 接口类名
+      funName:
+        - test_login_skydrive: {  # 接口方法名
+        bar: &hc [{ account : 13718411099 , password : Aa123456 },] ,  # 接口参数
+        test_data: {},
+        case_name: 正常登录,
+        result: ['0'],  # 预期结果
+        mode: post,  # 请求类型
+        re_bar: data, # 请求参数
+        }
+    - url: /api/file_service/v3/net_disk_list  #登录
+      name:  网盘 # 接口注释
+      className: skydrive_skydrive  # 接口类名
+      funName:
+        - test_net_disk_list: {  # 接口方法名
+        bar: ,  # 接口参数
+        test_data: {list_type: myRecent,},
+        case_name: 网盘列表,
+        result: [0],  # 预期结果
+        mode: post,  # 请求类型
+        re_bar: data, # 请求参数
+        }
+          test_search_list: {  # 接口方法名
+          bar: [*hc, /api/file_service/v3/search_list, {}] ,  # 接口参数
+          test_data: ,
+          case_name: 网盘搜索,
+          result: [0],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+  universalthrough:
+    - url: /api/auth_center/v3/login  # 登录
+      name: 登录  # 接口注释
+      className: TestLogin_universalthrough  # 接口类名
+      funName:
+        - test_login_universalthrough: {  # 接口方法名
+        bar: *hc ,  # 接口参数
+        test_data: {},
+        case_name: 正常登录,
+        result: ['0'],  # 预期结果
+        mode: post,  # 请求类型
+        re_bar: data, # 请求参数
+        }
+    - url: /api/know_all/v3/do_add_ann  #登录
+      name:  百事通 # 接口注释
+      className: universal_universalthrough  # 接口类名
+      funName:
+        - test_do_add_ann: {  # 接口方法名
+        bar: {title: , visible_range: '[{"type": 1, "id": []}]', content: ,push_status: 2,} ,  # 接口参数
+        test_data: [],
+        case_name: 百事通——添加,
+        result: [0],  # 预期结果
+        mode: post,  # 请求类型
+        re_bar: data, # 请求参数
+        }
+          test_announce_list: {  # 接口方法名
+          bar: [/api/know_all/v3/announce_list, {}] ,  # 接口参数
+          test_data: ,
+          case_name: 百事通——列表(权限),
+          result: [0],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+          test_lower_frame_Ann: {  # 接口方法名
+          bar: [/api/know_all/v3/do_lower_frame_Ann, {announce_id: }] ,  # 接口参数
+          test_data: ,
+          case_name: 百事通——下架,
+          result: [0],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+          test_do_del_ann: {  # 接口方法名
+          bar: [/api/know_all/v3/do_del_ann, {announce_id: }] ,  # 接口参数
+          test_data: ,
+          case_name: 百事通——删除,
+          result: [0],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+          test_announce_sort: {  # 接口方法名
+          bar: [/api/know_all/v3/announce_sort, {sorts: , announce_ids: , }] ,  # 接口参数
+          test_data: ,
+          case_name: 百事通——排序(个人排序),
+          result: [0],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+          test_publish: {  # 接口方法名
+          bar: [/api/know_all/v3/publish, {announce_id: }] ,  # 接口参数
+          test_data: ,
+          case_name: 百事通——发布,
+          result: ['0'],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+          test_manageAnnounce: {  # 接口方法名
+          bar: [/api/know_all/v3/manageAnnounce, {}] ,  # 接口参数
+          test_data: ,
+          case_name: 百事通——列表(后台),
+          result: [0],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+          test_logList: {  # 接口方法名
+          bar: [/api/know_all/v3/logList, {announce_id: ,}] ,  # 接口参数
+          test_data: ,
+          case_name: 百事通——操作记录,
+          result: [0],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+          test_do_edit_ann: {  # 接口方法名
+          bar: [/api/know_all/v3/do_edit_ann,{title: , visible_range: '[{"type": 1, "id": []}]', content: ,push_status: 2, announce_id: },] ,  # 接口参
+          test_data: ,
+          case_name: 百事通——编辑,
+          result: [0],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+          test_details: {  # 接口方法名
+          bar: [/api/know_all/v3/details, {announce_id: ,}] ,  # 接口参数
+          test_data: ,
+          case_name: 百事通——详情,
+          result: [0],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+  process:
+    - url: /api/auth_center/v3/login  # 登录
+      name: 登录  # 接口注释
+      className: TestLogin_process  # 接口类名
+      funName:
+        - test_login_process: {  # 接口方法名
+        bar: *hc ,  # 接口参数
+        test_data: {},
+        case_name: 正常登录,
+        result: ['0'],  # 预期结果
+        mode: post,  # 请求类型
+        re_bar: data, # 请求参数
+        }
+    - url: /api/flow_center/v3/add_fix_route_type  #登录
+      name:  流程服务 # 接口注释
+      className: Fixedprocessserver_process  # 接口类名
+      funName:
+        - test_do_add_ann: {  # 接口方法名
+        bar: {type_name: 测试固定流程类型} ,  # 接口参数
+        test_data: [],
+        case_name: 固定流程服务——添加类型,
+        result: [0],  # 预期结果
+        mode: post,  # 请求类型
+        re_bar: data, # 请求参数
+        }
+          test_type_list: {  # 接口方法名
+          bar: [/api/flow_center/v3/fix_route_type_list, {},],  # 接口参数
+          test_data: [],
+          case_name: 固定流程服务——列表类型,
+          result: [0],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+          test_del_fix_route_type: {  # 接口方法名
+          bar: [/api/flow_center/v3/del_fix_route_type, {type_id: },],  # 接口参数
+          test_data: [],
+          case_name: 固定流程服务——删除类型,
+          result: [0],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+          test_edit_fix_route_type: {  # 接口方法名
+          bar: [/api/flow_center/v3/edit_fix_route_type, {type_id: ,type_name: 编辑后的类型名称},],  # 接口参数
+          test_data: [],
+          case_name: 固定流程服务——编辑类型,
+          result: [0],  # 预期结果
+          mode: post,  # 请求类型
+          re_bar: data, # 请求参数
+          }
+
+
+
+
+
